@@ -13,4 +13,4 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-bundle exec rake pl:sign_msi --trace
+bundle exec rake pl:jenkins:sign_all --trace
