@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source /usr/local/rvm/scripts/rvm
+rvm use 2.5.9
+
+set -ex
+
+mkdir -p pkg/windows/one
+wget -P pkg/windows/one https://artifactory.delivery.puppetlabs.net/artifactory/generic__local/development/pdk/2.4.0.0/windows-x64/pdk-2.4.0.0-x64.msi
+
+export BUNDLE_PATH=.bundle/gems
+export BUNDLE_BIN=.bundle/bin
+
+bundle install
+
+bundle exec rake pl:sign_msi --trace

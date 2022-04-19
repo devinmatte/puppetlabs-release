@@ -1,0 +1,21 @@
+pipeline {
+  agent  {
+    label 'k8s-worker'
+  }
+
+  options {
+    timestamps()
+    ansiColor('xterm')
+    preserveStashes(buildCount: 15)
+  }
+
+  stages {
+    stage('Sign') {
+      steps {
+        script {
+          sh "./ci/test_sign"
+        }
+      }
+    }
+  }
+}
